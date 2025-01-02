@@ -1,0 +1,17 @@
+﻿@model Online_Course_Enrollment_System.Models.Enrollment
+
+<h1>Add Enrollment</h1>
+
+<form asp-action="AddEnrollment" method="post">
+    <div class="mb-3">
+        <label asp-for="StudentId" class="form-label"></label>
+        <input asp-for="StudentId" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label"></label>
+        <input asp-for="CourseId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Add Enrollment</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

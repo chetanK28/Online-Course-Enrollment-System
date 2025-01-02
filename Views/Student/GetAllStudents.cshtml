@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Online_Course_Enrollment_System.Models.Student>
+@{
+    ViewData["Title"] = "Get All Students";
+}
+
+<h1>Get All Students</h1>
+
+<h2>Student List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.ContactNumber</td>
+                <td>
+                    <a asp-action="EditStudent" asp-route-id="@student.StudentId" class="btn btn-primary">Edit</a>
+                    <form asp-action="DeleteStudent" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@student.StudentId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddStudent" class="btn btn-success">Add New Student</a>

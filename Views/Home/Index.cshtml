@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Online_Course_Enrollment_System.Models.Enrollment>
+
+<h1>All Enrollments</h1>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No enrollments available.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Enrollment ID</th>
+                <th>Student ID</th>
+                <th>Course ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var enrollment in Model)
+            {
+                <tr>
+                    <td>@enrollment.EnrollmentId</td>
+                    <td>@enrollment.StudentId</td>
+                    <td>@enrollment.CourseId</td>
+                    <td>
+                        <form asp-action="DeleteEnrollment" method="post">
+                            <input type="hidden" name="id" value="@enrollment.EnrollmentId" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Updated link to navigate to AddEnrollment -->
+<a asp-controller="Enrollment" asp-action="AddEnrollment" class="btn btn-primary">Add New Enrollment</a>

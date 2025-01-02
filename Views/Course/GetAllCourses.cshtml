@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Online_Course_Enrollment_System.Models.Course>
+@{
+    ViewData["Title"] = "GetAllCourses";
+}
+
+<h1>Get All Courses</h1>
+
+<h2>Course List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Duration (Weeks)</th>
+            <th>Capacity</th>
+            <th>Available Seats</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@course.CourseId</td>
+                <td>@course.Name</td>
+                <td>@course.Description</td>
+                <td>@course.Duration</td>
+                <td>@course.Capacity</td>
+                <td>@course.AvailableSeats</td>
+                <td>
+                    <a asp-action="EditCourse" asp-route-id="@course.CourseId" class="btn btn-primary">Edit</a>
+                    <form asp-action="DeleteCourse" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@course.CourseId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddCourse" class="btn btn-success">Add New Course</a>
